@@ -9,30 +9,30 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
-import br.com.sisdb.brewer.model.Cerveja;
+import br.com.sisdb.brewer.model.Cliente;
 
 @Controller
-public class CervejasController {
+public class ClienteController {
 	
-	@RequestMapping("/cervejas/novo")
-	public String novo(Cerveja cerveja) {		
-		return "cerveja/cadastroCerveja";
+	@RequestMapping("/cliente/novo")
+	public String novo(Cliente cliente) {		
+		return "cliente/cadastroCliente";
 	}
 	
-	@RequestMapping(value = "/cervejas/novo", method = RequestMethod.POST)
-    public String cadastrar(@Valid Cerveja cerveja, BindingResult result, Model model,
+
+	@RequestMapping(value = "/cliente/novo", method = RequestMethod.POST)
+    public String cadastrar(@Valid Cliente cliente, BindingResult result, Model model,
     		RedirectAttributes attributes) {
 		if (result.hasErrors()) {			
-			return novo(cerveja);
+			return novo(cliente);
 		}
 		//salvar ..	
 		
 		attributes.addFlashAttribute("mensagem", "Cerveja salva com sucesso!");
 		System.out.println("Cerveja cadastrada com sucesso GET-Object: "+ 
-		cerveja.getSku()+" "+cerveja.getNome()+ " "+cerveja.getDescricao());
-		return "redirect:/cervejas/novo";
+		cliente.getNome());
+		return "redirect:/cliente/novo";
 	}
 	
-		
 	
 }
